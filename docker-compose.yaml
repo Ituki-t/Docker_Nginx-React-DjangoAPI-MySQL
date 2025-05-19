@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./api/dockerfile
+    volumes:
+      - ./api/code:/code
+    ports:
+      - "8000:8000"
+
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: ./app/dockerfile
+    volumes:
+      - ./app/react_comment_app:/app/react_comment_app
+      - react_node_modules:/app/react_comment_app/node_modules
+    ports:
+      - "3000:3000"
+
+
+volumes:
+  react_node_modules:

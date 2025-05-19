@@ -1,0 +1,12 @@
+FROM node:16
+
+WORKDIR /app
+
+# COPY ./app/startup.sh /app/startup.sh
+
+RUN npx create-react-app react_comment_app \
+    && npm install axios
+
+WORKDIR /app/react_comment_app
+
+CMD [ "npm", "start" ]
