@@ -9,3 +9,5 @@ RUN npx create-react-app react_comment_app \
 WORKDIR /app/react_comment_app
 
 CMD [ "npm", "start" ]
+
+# プロジェクトとは直接関係がないがこのファイルのステージング状態が消えない
