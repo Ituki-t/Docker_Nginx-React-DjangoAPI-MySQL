@@ -6,3 +6,13 @@
 ```
 cd projects\docker\docker_nginx-react-djangoapi-mysql
 ```
+
+### exec
+- app
+```
+docker exec -it app bash
+```
+- api
+```
+docker exec -it api bash
+```
