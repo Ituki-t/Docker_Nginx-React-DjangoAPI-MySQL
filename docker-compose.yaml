@@ -4,24 +4,25 @@ services:
 
   db: 
     container_name: db
-    image: mysql:8.0
+    # image: mysql:8.0
     build: 
       context: .
-      # いったんdockerfileは使わない方向性
-      # dockerfile: ./db/dockerfile
+      dockerfile: ./db/dockerfile
     environment: 
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSROD=${MYSQL_PASSWORD}
+    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    - MYSQL_DATABASE=${MYSQL_DATABASE}
+    - MYSQL_USER=${MYSQL_USER}
+    - MYSQL_PASSWORD=${MYSQL_PASSWORD} 
     env_file: 
       - .env
     volumes:
-      - /db/mysql/init.sql /docker-entrypoint-initdb.d
-      - ./db/mysql/my.conf etc/mysql/conf.d/my.conf
+      # - ./db/mysql/init.sql:/docker-entrypoint-initdb.d
+      # - ./db/mysql/my.cnf:/etc/mysql/conmy.cnf
       - mysql_data:/var/lib/mysql
-    expose:
-      - 3306
+    # expose:
+    #   - 3306
+    ports: 
+      - "3306:3306"
 
 
   api:
@@ -63,3 +64,4 @@ services:
 
 volumes:
   react_node_modules:
+  mysql_data:
