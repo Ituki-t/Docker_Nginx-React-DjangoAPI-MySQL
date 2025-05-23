@@ -1,6 +1,29 @@
 version: '3.8'
 
 services:
+
+  db: 
+    container_name: db
+    image: mysql:8.0
+    build: 
+      context: .
+      # いったんdockerfileは使わない方向性
+      # dockerfile: ./db/dockerfile
+    environment: 
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSROD=${MYSQL_PASSWORD}
+    env_file: 
+      - .env
+    volumes:
+      - /db/mysql/init.sql /docker-entrypoint-initdb.d
+      - ./db/mysql/my.conf etc/mysql/conf.d/my.conf
+      - mysql_data:/var/lib/mysql
+    expose:
+      - 3306
+
+
   api:
     container_name: api
     build:
