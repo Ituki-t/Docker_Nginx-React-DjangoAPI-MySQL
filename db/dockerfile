@@ -1,0 +1,5 @@
+FROM mysql:8.0
+
+# COPY ./db/mysql/init.sql /docker-entrypoint-initdb.d
+
+# COPY ./db/mysql/my.conf etc/mysql/conf.d/my.conf
