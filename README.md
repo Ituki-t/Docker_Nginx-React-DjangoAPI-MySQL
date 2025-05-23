@@ -16,3 +16,6 @@ docker exec -it app bash
 ```
 docker exec -it api bash
 ```
+
+### memo
+#### Nginx.confのDocker_Nginx-Djangoと違った点
