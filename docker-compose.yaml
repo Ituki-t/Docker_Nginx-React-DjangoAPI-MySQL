@@ -8,15 +8,16 @@ services:
     build: 
       context: .
       dockerfile: ./db/dockerfile
-    environment: 
-    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-    - MYSQL_DATABASE=${MYSQL_DATABASE}
-    - MYSQL_USER=${MYSQL_USER}
-    - MYSQL_PASSWORD=${MYSQL_PASSWORD} 
     env_file: 
       - .env
+    environment: 
+      - DB_PORT=${DB_PORT}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     volumes:
-      # - ./db/mysql/init.sql:/docker-entrypoint-initdb.d
+      - ./db/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
       # - ./db/mysql/my.cnf:/etc/mysql/conmy.cnf
       - mysql_data:/var/lib/mysql
     # expose:
@@ -30,10 +31,19 @@ services:
     build:
       context: .
       dockerfile: ./api/dockerfile
+    env_file:
+      - .env
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}  
     volumes:
       - ./api/django/django_comment_api+:/code
     ports:
       - "8000:8000"
+    depends_on:
+      - db
   
 
   app:
