@@ -8,14 +8,23 @@ cd projects\docker\docker_nginx-react-djangoapi-mysql
 ```
 
 ### exec
-- app
+- app(React)
 ```
 docker exec -it app bash
 ```
-- api
+- api(Django)
 ```
 docker exec -it api bash
 ```
+- db(MySQL)(rootではいる(passは.envを参照))
+```
+docker exec -it db bash -u root -p
+```
+- web(Nginx)
+```
+docker exec -it web bash
+```
+
 
 ### memo
-#### Nginx.confのDocker_Nginx-Djangoと違った点
+#### default.confのDocker_Nginx-Djangoと違った点
