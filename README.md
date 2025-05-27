@@ -27,10 +27,7 @@ docker exec -it web bash
 
 
 ## memo
-#### default.confのDocker_Nginx-Djangoと違った点
-
-
-#### Reactの画面が真っ白になる場合
+### 1. Reactの画面が真っ白になる場合
 - f12で確認すると以下のエラーが出る場合
 ```
 index.js:11 Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
